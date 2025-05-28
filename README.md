@@ -98,7 +98,7 @@ synchronize fix-docker
 </p>
 
 ---
----
+
 ### Support My Craft:
 <p align="center">
 <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&color=FFD700&pause=1000&center=true&vCenter=true&width=435&lines=Buy+Me+Coffee&background=00000000" />
