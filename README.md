@@ -73,6 +73,7 @@ Metrics Server (default port 3001): JSON API endpoints: Visit localhost:3001/met
 
 ---
 
+```
 ## 🛠️ Troubleshooting
 
 **Docker not found?**
