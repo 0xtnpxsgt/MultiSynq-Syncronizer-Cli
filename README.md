@@ -1,5 +1,7 @@
 # Synqchronizer One-Click Installer
 
+![event-foundation 3707e01653652767982d](https://github.com/user-attachments/assets/9fc7385a-53d6-4654-bb8b-518309f520dd)
+ 
 🚀 **Complete CLI toolkit for Multisynq Synchronizer**  
 Manage your Synchronizer node with ease using this one-click interactive shell installer.
 
