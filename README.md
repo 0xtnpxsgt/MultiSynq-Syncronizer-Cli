@@ -90,9 +90,3 @@ synchronize fix-docker
 journalctl -u synchronizer-cli -f
 ```
 
----
-
-## 📄 License
-
-Apache-2.0  
-(c) 2025 — Built for the Multisynq ecosystem
