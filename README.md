@@ -85,9 +85,4 @@ synchronize install-docker
 ```bash
 synchronize fix-docker
 ```
-
-**See logs**
-```bash
-journalctl -u synchronizer-cli -f
-```
-
+---
