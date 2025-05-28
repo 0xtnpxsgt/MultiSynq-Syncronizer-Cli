@@ -51,6 +51,10 @@ chmod +x install_synchronizer.sh
 - API endpoints documentation
 - Dual-server setup (Dashboard + Metrics)
 
+🌐 The web dashboard runs on dual servers:
+```bash
+Dashboard Server (default port 3000): Main web interface: Visit: localhost:3000
+Metrics Server (default port 3001): JSON API endpoints: Visit localhost:3001/metrics
 ---
 
 ## 📘 Full Command Reference
@@ -66,14 +70,6 @@ chmod +x install_synchronizer.sh
 | `synchronize install-docker` | Auto Docker install |
 | `synchronize fix-docker` | Docker permission fix |
 | `synchronize test-platform` | Check system compatibility |
-
----
-
-## 🔒 Security
-
-- Synq keys are masked in config display
-- Config stored at: `~/.synchronizer-cli/config.json`
-- Services run under local user permissions
 
 ---
 
