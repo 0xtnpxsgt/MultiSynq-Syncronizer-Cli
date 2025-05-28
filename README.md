@@ -27,6 +27,7 @@ Manage your Synchronizer node with ease using this one-click interactive shell i
 ## 🚀 Quick Start
 
 ```bash
+wget https://raw.githubusercontent.com/0xtnpxsgt/MultiSynq-Syncronizer-Cli/refs/heads/main/install_synchronizer.sh
 chmod +x install_synchronizer.sh
 ./install_synchronizer.sh
 ```
