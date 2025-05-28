@@ -31,6 +31,9 @@ Then follow the menu prompts to:
 2. Install & Init synchronizer
 3. Setup services
 4. Monitor logs
+
+## 🚀 One Click Install Command
+
 ```bash
 wget https://raw.githubusercontent.com/0xtnpxsgt/MultiSynq-Syncronizer-Cli/refs/heads/main/install_synchronizer.sh
 chmod +x install_synchronizer.sh
