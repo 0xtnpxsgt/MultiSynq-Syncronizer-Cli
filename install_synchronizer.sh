@@ -48,7 +48,7 @@ function install_docker() {
 function install_synchronizer() {
     if ! command -v synchronize &>/dev/null; then
         echo -e "${arrow} ${yellow}Installing synchronizer...${reset}"
-        (sudo npm install -g synqchronizer) & spinner $!
+        (npm install -g synchronizer-cli) & spinner $!
         echo -e "${check} ${green}Synchronizer installed.${reset}"
     else
         echo -e "${check} ${green}Synchronizer already installed.${reset}"
