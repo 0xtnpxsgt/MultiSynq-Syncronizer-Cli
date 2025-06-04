@@ -41,7 +41,7 @@ wget https://raw.githubusercontent.com/0xtnpxsgt/MultiSynq-Syncronizer-Cli/refs/
 chmod +x install_synchronizer.sh
 ./install_synchronizer.sh
 ```
-![image](https://github.com/user-attachments/assets/868c8b4b-b773-4c2b-a3ec-2b49fccdcfcc)
+![image](https://github.com/user-attachments/assets/ef0b64cb-63b2-4afc-bdc0-963eab88bfb8)
 
 ---
 
