@@ -72,34 +72,54 @@ function setup_services() {
 }
 
 function check_logs() {
-    echo -e "${green}Choose log source:${reset}"
-    echo -e "${yellow}1️⃣  Systemd (journalctl)${reset}"
-    echo -e "${yellow}2️⃣  Docker container logs${reset}"
-    read -p "Select option: " log_choice
-    if [ "$log_choice" == "1" ]; then
-        echo -e "${green}Running systemd logs... Press Ctrl+C to exit.${reset}"
-        journalctl -u synchronizer-cli -f
-    elif [ "$log_choice" == "2" ]; then
-        echo -e "${green}Running Docker logs... Press Ctrl+C to exit.${reset}"
-        docker logs -f synchronizer-cli
-    else
-        echo -e "${red}Invalid choice.${reset}"
-    fi
+    clear
+    PS3=$'\nSelect log source: '
+    options=("Systemd (last 100 lines)" "Docker container (last 100 lines)" "Return to menu")
+    select opt in "${options[@]}"; do
+        case $REPLY in
+            1)
+                echo -e "${green}⤷ Showing systemd logs for synchronizer-cli:${reset}"
+                journalctl -u synchronizer-cli --no-pager -n 100
+                ;;
+            2)
+                container=$(docker ps --filter "name=synchronizer-cli" --format "{{.Names}}" | head -n1)
+                if [ -z "$container" ]; then
+                    echo -e "${red}No running synchronizer-cli container found.${reset}"
+                else
+                    echo -e "${green}⤷ Showing Docker logs for '$container':${reset}"
+                    docker logs --tail 100 "$container"
+                fi
+                ;;
+            3)
+                break
+                ;;
+            *)
+                echo -e "${red}Invalid choice.${reset}"
+                ;;
+        esac
+
+        read -n1 -r -p $'\nPress any key to return to logs menu…'
+        clear
+        PS3=$'\nSelect log source: '
+    done
 }
 
 function update_multisynq() {
-    echo -e "${arrow} ${yellow}Stopping services...${reset}"
-    sudo systemctl stop synchronizer-cli
-    sudo systemctl stop synchronizer-cli-web
+    echo -e "${arrow} ${yellow}Stopping services…${reset}"
+    sudo systemctl stop synchronizer-cli synchronizer-cli-web
 
-    echo -e "${arrow} ${yellow}Updating synchronizer-cli...${reset}"
-    (npm install -g synchronizer-cli) & spinner $!
-    echo -e "${check} ${green}synchronizer-cli updated.${reset}"
+    echo -e "${arrow} ${yellow}Updating synchronizer-cli…${reset}"
+    ( npm update -g synchronizer-cli \
+      && echo -e "${check} ${green}synchronizer-cli updated.${reset}" ) & spinner $!
 
-    echo -e "${arrow} ${yellow}Starting services...${reset}"
-    sudo systemctl start synchronizer-cli
-    sudo systemctl start synchronizer-cli-web
+    echo -e "${arrow} ${yellow}Starting services…${reset}"
+    sudo systemctl start synchronizer-cli synchronizer-cli-web
     echo -e "${check} ${green}Services restarted.${reset}"
+
+    echo -e "${arrow} ${yellow}Installed version:${reset}"
+    npm list -g synchronizer-cli --depth=0
+
+    read -n1 -r -p $'\nPress any key to return to main menu…'
 }
 
 function check_version() {
