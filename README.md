@@ -1,4 +1,4 @@
-# Synqchronizer One-Click Installer
+# Synchronizer One-Click Installer
 
 ![event-foundation 3707e01653652767982d](https://github.com/user-attachments/assets/9fc7385a-53d6-4654-bb8b-518309f520dd)
  
@@ -11,7 +11,7 @@ Manage your Synchronizer node with ease using this one-click interactive shell i
 
 - ✅ Installs **Node.js v18**
 - ✅ Installs **Docker** (on Linux, auto-configured)
-- ✅ Installs `synqchronizer` globally via `npm`
+- ✅ Installs `synchronizer` globally via `npm`
 - ✅ Initializes configuration
 - ✅ Generates and enables `systemd` services for CLI and Web dashboard
 - ✅ Includes interactive menu, icons, and progress spinners
