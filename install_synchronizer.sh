@@ -107,19 +107,24 @@ function check_logs() {
 function update_multisynq() {
     echo -e "${arrow} ${yellow}Stopping services…${reset}"
     sudo systemctl stop synchronizer-cli synchronizer-cli-web
+    docker stop synchronizer-cli 2>/dev/null || true
 
     echo -e "${arrow} ${yellow}Updating synchronizer-cli…${reset}"
     ( npm update -g synchronizer-cli \
-      && echo -e "${check} ${green}synchronizer-cli updated.${reset}" ) & spinner $!
+      && echo -e "${check} ${green}synchronizer-cli updated.${reset}" \
+      || echo -e "${red}Update failed (exit $?).${reset}" ) \
+    & spinner $!
 
     echo -e "${arrow} ${yellow}Starting services…${reset}"
     sudo systemctl start synchronizer-cli synchronizer-cli-web
-    echo -e "${check} ${green}Services restarted.${reset}"
 
+    echo -e "${check} ${green}Services restarted.${reset}"
     echo -e "${arrow} ${yellow}Installed version:${reset}"
     npm list -g synchronizer-cli --depth=0
 
-    read -n1 -r -p $'\nPress any key to return to main menu…'
+    echo   # blank line so prompt isn’t eaten
+    read -n1 -s -r -p "Press any key to return to main menu…"
+    echo
 }
 
 function check_version() {
