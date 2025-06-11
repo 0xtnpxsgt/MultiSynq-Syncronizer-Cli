@@ -124,8 +124,21 @@ function update_multisynq() {
 
 function check_version() {
     echo -e "${arrow} ${yellow}Checking synchronizer-cli version...${reset}"
-    npm list -g synchronizer-cli --depth=0 || echo -e "${red}synchronizer-cli not found.${reset}"
+
+    if ! version_output=$(synchronize --version 2>&1); then
+        echo -e "${red}synchronizer-cli failed to run (exit $?).${reset}"
+    elif [[ -z "${version_output//[[:space:]]/}" ]]; then
+        echo -e "${red}synchronizer-cli returned no output.${reset}"
+    else
+        echo -e "${green}${version_output}${reset}"
+    fi
+
+    # ensure there's a blank line before the prompt
+    echo
+    read -n1 -s -r -p "Press any key to return to main menu…"
+    echo
 }
+
 
 function show_menu() {
     clear
